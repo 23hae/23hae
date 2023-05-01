@@ -1,7 +1,7 @@
 name: Blog post workflow
 on: 
   schedule:
-    - cron: '*/60 * * * *'
+    - cron: '*/5 * * * *'
     
     
 jobs: 
@@ -22,6 +22,7 @@ jobs:
             git add .
             git diff --quiet --cached || git commit -m "Update README"    
       - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
